@@ -14,7 +14,6 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Service
-
 public class UserDetailsServiceImpl implements UserDetailsService {
     private final UserService userService;
 
@@ -22,7 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         this.userService = userService;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userService.findByUsername(username);

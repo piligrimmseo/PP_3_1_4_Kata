@@ -16,9 +16,9 @@ import java.util.Set;
 @Component
 public class DatabaseInitializer implements ApplicationListener<ContextRefreshedEvent> {
 
-    private RoleRepository roleRepository;
-    private UserRepository userRepository;
-    private PasswordEncoder passwordEncoder;
+    private final RoleRepository roleRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
     public DatabaseInitializer(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {

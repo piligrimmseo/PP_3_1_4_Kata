@@ -12,14 +12,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
 
     private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-
-    private UserRepository userRepository;
-
+    private final UserRepository userRepository;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository) {
@@ -27,6 +24,7 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Transactional(readOnly = true)
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
@@ -38,17 +36,16 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
-
+    @Transactional(readOnly = true)
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-
+    @Transactional(readOnly = true)
     public User showUserById(int id) {
         Optional<User> userById = userRepository.findById(id);
         return userById.orElse(null);
     }
-
 
     @Transactional
     public void updateUserById(int id, User updateUser) {

@@ -16,8 +16,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-    private UserService userService;
-    private RoleRepository roleRepository;
+    private final UserService userService;
+    private final RoleRepository roleRepository;
 
     @Autowired
     public AdminController(UserService userService, RoleRepository roleRepository) {
@@ -37,7 +37,7 @@ public class AdminController {
 
 
     @PatchMapping("{id}/edit")
-    public String edit(@ModelAttribute("user") User user, Model model, @PathVariable("id") int id) {
+    public String edit(@ModelAttribute("user") User user, @PathVariable("id") int id) {
         userService.updateUserById(id, user);
         return "redirect:/admin/";
     }
